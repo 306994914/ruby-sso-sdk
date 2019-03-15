@@ -1,15 +1,16 @@
-# Ruby::Ssosdk
+## 玉符单点登录 SDK
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ruby/ssosdk`. To experiment with that code, run `bin/console` for an interactive prompt.
+玉符SDK集成了签署和验证JWT令牌的功能，使得身份提供者（IDP）和服务提供者（SP）只需要用很少的工作量就可以快速将玉符提供的单点登录等功能集成到现有的服务中。
 
-TODO: Delete this and the text above, and describe your gem
+## 单点登录SDK简介
+作为服务提供者（SP）,可以使用玉符SDK验证JWT令牌的有效性（包括有效期、签名等），验证成功后可取出token中字段进行相应的鉴权。
+作为身份提供者（IDP）,可以使用玉符SDK灵活进行参数配置，并生成带有token的跳转url，进行单点登录功能。
 
-## Installation
-
+## 安装
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ruby-ssosdk'
+gem 'ruby-sso-sdk'
 ```
 
 And then execute:
@@ -18,34 +19,35 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ruby-ssosdk
+    gem "ruby-sso-sdk", :git => "git://github.com/306994914/ruby-sso-sdk.git"
 
-## Usage
-As IDP verify token:
+
+## SDK使用
+1.服务提供者(SP)
+使用必要信息初始化SDK
+```ruby
     @yufuAuth = Ssosdk::YufuAuth.new
     @yufuAuth.initializeVerifier(keyPath)
     jwt = @yufuAuth.verifyToken(testToken)
-As SP  generate token or generate idpurl with token:
+```
+## 身份提供者（IDP)
+
+1.自定义jwt的参数
+```ruby
     claims = {Ssosdk::YufuTokenConstants::APP_INSTANCE_ID_KEY => "testAppInstanceId", "customFieldsKey" =>              "customFieldsValue"}
+```  
+2.使用必要信息初始化SDK（必要参数在玉符初始化后获取）
+```ruby
     @yufuAuth = Ssosdk::YufuAuth.new
     @yufuAuth.initializeGenerator(keyPath, "testIssuer", "testTenant", "2bf935821aa33e693d39ab569ba557aa0af8e02e")
     idp_token = @yufuAuth.generateToken(claims)
     jwt = JWT.decode idp_token, nil, false
     puts @yufuAuth.generateIDPRedirectUrl(claims)
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ruby-ssosdk. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
+```    
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Code of Conduct
 
-Everyone interacting in the Ruby::Ssosdk project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/ruby-ssosdk/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Ruby::Ssosdk project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[306994914]/ruby-ssosdk/blob/master/CODE_OF_CONDUCT.md).
