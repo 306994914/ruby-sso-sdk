@@ -1,7 +1,7 @@
 require "ruby/ssosdk/version"
 
 module Ruby
-  module Ssosdk
+  module YufuSsoSdk
     class Error < StandardError; end
     # Your code goes here...
   end

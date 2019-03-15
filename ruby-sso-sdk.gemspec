@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "ruby/ssosdk/version"
+require "lib/ruby/ssosdk/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "ruby-ssosdk"
-  spec.version       = Ruby::Ssosdk::VERSION
+  spec.name          = "sso-ruby23-sdk"
+  spec.version       = Ruby::YufuSsoSdk::VERSION
   spec.authors       = ["GaoShang"]
   spec.email         = ["shanggao@yufuid.com"]
 
