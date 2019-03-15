@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    jwt (2.1.0)
+    minitest (5.11.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  jwt (~> 2.1)
+  minitest (~> 5.8, >= 5.8.4)
+
+BUNDLED WITH
+   2.0.1
