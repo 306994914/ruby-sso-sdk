@@ -21,9 +21,17 @@ Or install it yourself as:
     $ gem install ruby-ssosdk
 
 ## Usage
-
-TODO: Write usage instructions here
-
+As IDP verify token:
+    @yufuAuth = Ssosdk::YufuAuth.new
+    @yufuAuth.initializeVerifier(keyPath)
+    jwt = @yufuAuth.verifyToken(testToken)
+As SP  generate token or generate idpurl with token:
+    claims = {Ssosdk::YufuTokenConstants::APP_INSTANCE_ID_KEY => "testAppInstanceId", "customFieldsKey" =>              "customFieldsValue"}
+    @yufuAuth = Ssosdk::YufuAuth.new
+    @yufuAuth.initializeGenerator(keyPath, "testIssuer", "testTenant", "2bf935821aa33e693d39ab569ba557aa0af8e02e")
+    idp_token = @yufuAuth.generateToken(claims)
+    jwt = JWT.decode idp_token, nil, false
+    puts @yufuAuth.generateIDPRedirectUrl(claims)
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
