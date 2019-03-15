@@ -44,10 +44,3 @@ Or install it yourself as:
     jwt = JWT.decode idp_token, nil, false
     puts @yufuAuth.generateIDPRedirectUrl(claims)
 ```    
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Ruby::Ssosdk project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[306994914]/ruby-ssosdk/blob/master/CODE_OF_CONDUCT.md).
